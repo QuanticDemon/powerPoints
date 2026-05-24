@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Party</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="button startbutton" id="start-btn">
+        <button type="submit" name="action" value="start">Start</button>
+    </div>
+    <div class="button easybutton" id="level-btn">
+        <button type="submit" name="action" value="start">Easy level</button>
+    </div>
+    
+    <!--<div class="dot dot-enemy" id="enemy-dot">
+        <p><strong>Zombie</strong></p>
+    </div>-->
+    <script src="{{ url_for('static', filename='js/script.js') }}" defer></script>
+</body>
+</html>
