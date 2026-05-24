@@ -29,7 +29,12 @@ body{
     /* SOLUCIÓN: Agrega el tamaño directamente aquí */
     width: 100px;
     height: 100px;
+<<<<<<< HEAD
     border-radius: 50%; 
+=======
+    border-radius: 50%;
+    display: none;
+>>>>>>> origin/master
 }
 
 .easybutton{
