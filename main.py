@@ -63,10 +63,20 @@ def home():
     return render_template("index.html")
 
 
+@app.route('/points?kills=${killedZombies}&coins=${coins}')
+def points():
+
+    kills = request.args.get("kills")
+    coins = request.args.get("coins")
+
+
+    return render_template("points.html", kills = kills, coins = coins)
 if __name__ == "__main__":
-    app.run(debug=True)
+    
     GameEvenHub.sub_game_event("ENEMIGO_ELIMINADO", AchievementTracker.achievement)
     GameEvenHub.sub_game_event("MONEDA_RECOGIDA", AchievementTracker.achievement)
 
     m1 = GameEvents(True)
     m1.killEnemy()
+
+    app.run(debug=True)
