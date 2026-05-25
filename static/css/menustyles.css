@@ -1,0 +1,50 @@
+body {
+    /* Eliminado el carácter extraño */
+    background-color: brown; 
+      display: flex;
+        /* Centrado vertical y horizontal en el body */
+        justify-content: center; 
+          align-items: center;
+            min-height: 100vh; /* Asegura que el body ocupe toda la pantalla */
+          }
+
+          .menu-maininterface {
+              /* Eliminado el carácter extraño */
+              background-color: white;
+                display: flex; /* Para alinear sus hijos (botones) */
+                  
+                  /* Posicionamiento correcto */
+                  position: absolute; /* Necesario para usar top/left */
+                    top: 50%;
+                      left: 50%;
+                        /* Truco para centrar exactamente: mueve el elemento la mitad de su propio ancho/alto */
+                        transform: translate(-50%, -50%); 
+                          
+                          width: 60%;
+                            height: 100vh;
+                              
+                              /* Sintaxis correcta de box-shadow: color offset-x offset-y blur spread */
+                              /* Eliminado el carácter extraño */
+                              box-shadow: black 12px 12px 10px 5px;
+                            }
+
+                            .menu-maininterface .button {
+                                display: inline-flex;
+                                  
+                                  /* Si quieres centrar los botones dentro del menú, usa flex en el padre (.menu-maininterface)
+                                   *      y justify-content/align-items ahí, en lugar de posicionar cada botón individualmente.
+                                   *           Si realmente quieres posicionarlos individualmente, necesitas position: relative/absolute aquí también. */
+    
+    width: 100px;
+      height: 80px;
+        
+        /* Ejemplo de cómo centrar un botón dentro del contenedor flex si fuera necesario:
+         *      position: absolute;
+         *           top: 50%;
+         *                left: 50%;
+         *                     transform: translate(-50%, -50%);
+         *                       */
+}
+                            }
+          }
+}

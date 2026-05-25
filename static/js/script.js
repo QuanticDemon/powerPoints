@@ -137,7 +137,7 @@ function startGame() {
                 clearInterval(enemyCreator);
                 
                 console.log(`/points?kills=${killedZombies}&coins=${coins}`);
-                window.location.href = `/points?kills=${killedZombies}&coins=${coins}`;
+                window.location.href = `/points`, killedZombies, coins;
                 
             }
                                 

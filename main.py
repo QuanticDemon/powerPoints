@@ -55,18 +55,20 @@ class AchievementTracker:
                 print(f"Felicidades! Has desbloqueado el logro 'Rico'")
 
 
+
+
+
+
 app= Flask(__name__)
 @app.route('/')
 def home():
-
-    
-    return render_template("index.html")
+    return render_template("menu.html")
 
 
-@app.route('/points?kills=${killedZombies}&coins=${coins}')
+@app.route('/points')
 def points():
 
-    kills = request.args.get("kills")
+    kills = request.args.get("killedZombies")
     coins = request.args.get("coins")
 
 
