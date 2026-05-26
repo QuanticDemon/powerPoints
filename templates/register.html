@@ -18,13 +18,13 @@
         <br />
         <label for="pass">Enter your password:</label>
         <br />
-        <input  type="text" required name="pass" id="pass" />
+        <input  type="password" required name="pass" id="pass" />
         <div class="show-pass">
             <button type="button" id="show">Show</button>
         </div>
         <br />
         <br />
-        <button type="submit" name="action" value="registerInto">Login</button>
+        <button type="submit" id="action" name="action" value="registerInto">Login</button>
       </form>
     </div>
 </body>
@@ -34,7 +34,15 @@
     const email = document.getElementById('mail');
     const pass = document.getElementById('pass');
     const show = document.getElementById('show');
+    const submit = document.getElementById('action');
+    show.addEventListener("click", () => {
+      if (pass.type == "password"){
+        pass.type="text";
+      }
+      else if (pass.type == "text"){
+        pass.type="password";
+      }
+    });
 
-   
 </script>
 </html>

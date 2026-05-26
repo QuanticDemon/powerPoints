@@ -94,21 +94,39 @@ function startGame() {
         const direction = Math.floor(Math.random() * 4) + 1;
 
         const movement = setInterval(() => {
-            i += 25;
+            i += 5;
 
             switch (i) {
-                case 25:
+                case 5:
                     enemyDot.style.display = "block";
-                    VectorMovement(enemyDot, mathMovement(1, 10), direction);
+                    VectorMovement(enemyDot, mathMovement(1, 5), direction);
+                    break;
+                case 10:
+                    VectorMovement(enemyDot, mathMovement(6, 10), direction);
+                    break;
+                case 15:
+                    VectorMovement(enemyDot, mathMovement(11, 15), direction);
+                    break;
+                case 20:
+                    VectorMovement(enemyDot, mathMovement(16,20), direction);
+                    break;
+                case 25:
+                    VectorMovement(enemyDot, mathMovement(21,25), direction); 
+                    break;
+                case 30:
+                    VectorMovement(enemyDot, mathMovement(26,30), direction);       
+                    break;
+                case 35:
+                    VectorMovement(enemyDot, mathMovement(31,35), direction);
+                    break;
+                case 40:
+                    VectorMovement(enemyDot, mathMovement(36,40), direction);
+                    break;
+                case 45:
+                    VectorMovement(enemyDot, mathMovement(41,49), direction);
                     break;
                 case 50:
-                    VectorMovement(enemyDot, mathMovement(10, 30), direction);
-                    break;
-                case 75:
-                    VectorMovement(enemyDot, mathMovement(31, 45), direction);
-                    break;
-                case 100:
-                    VectorMovement(enemyDot, 50, direction);
+                    VectorMovement(enemyDot, 50, direction);       
                     const enemyPosition = enemyDot.getBoundingClientRect();
                     const userPosition = userDot.getBoundingClientRect();
                     if (
@@ -124,7 +142,7 @@ function startGame() {
                     }
                     break;
             }
-        }, 1000);
+        }, 500);
 
         // ← EL CLICK SUMA CADA VEZ QUE SE HACE
         enemyDot.addEventListener("click", () => {
@@ -141,11 +159,11 @@ function startGame() {
                 clearInterval(movement);
 
                 // ← VERIFICAR CONDICIÓN DE VICTORIA
-                if (enemies >= 5 && killedZombies >= 5) {
-                    EndGame();
+                if (enemies >= 5 && killedZombies >= 5 || gameEnded == true) {
+                    EndGame()
                 }
             }, 100);
         });
 
-    }, 2000);
+    }, 1000);
 }

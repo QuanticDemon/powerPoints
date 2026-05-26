@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
 </head>
 <body>
+    <div class="account">
+      <p><strong>{{name}}</strong></p>
+    </div>
     <div class="points">
         <a href="{{ url_for('points')}}">Points</a>
     </div>
