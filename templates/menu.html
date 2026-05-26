@@ -16,5 +16,32 @@
      <button type="submit" id="startbtn-menu">Start</button> 
     </div>
   </div>
+
+  <div class="pop-up" id="pop-up">
+    <div class="close" id="close">
+      <p>X</p>
+    </div>
+    <h5>Necesita una cuenta, por favor escoga alguna de estas dos opciones</h5>
+    <div class="button">
+      <a href="{{url_for('login')}}">Iniciar Sesion</a>
+    </div>
+    <div class="button">
+      <a href="{{url_for('register')}}">Crear Cuenta</a>
+    </div>
+  </div>
 </body>
+<script>
+  const pop_up = document.getElementById('pop-up');
+  const startbtn = document.getElementById('startbtn-menu');
+  const closebtn = document.getElementById('close');
+  pop_up.style.display="none";
+
+  startbtn.addEventListener("click",() => {
+    pop_up.style.display="block";
+    closebtn.addEventListener("click", () => {
+      pop_up.style.display="none";
+    });
+  });
+  
+</script>
 </html>

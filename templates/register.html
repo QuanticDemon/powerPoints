@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <div class="form-container">
+      <form action="/register" method="post">
+        <label for="user">Enter a username:</label>
+        <br />
+        <input type="text" required name="user" id="user"/>
+        <br />
+        <label for="mail">Enter a email:</label>
+        <br />
+        <input type="email" required name="mail" id="mail"/>
+        <br />
+        <label for="pass">Enter your password:</label>
+        <br />
+        <input  type="text" required name="pass" id="pass" />
+        <div class="show-pass">
+            <button type="button" id="show">Show</button>
+        </div>
+        <br />
+        <br />
+        <button type="submit" name="action" value="registerInto">Login</button>
+      </form>
+    </div>
+</body>
+<script>
+    const name = document.getElementById('user');
+    
+    const email = document.getElementById('mail');
+    const pass = document.getElementById('pass');
+    const show = document.getElementById('show');
+
+   
+</script>
+</html>

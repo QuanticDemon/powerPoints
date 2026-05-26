@@ -1,84 +1,97 @@
+from os import name
 import time
 import logging
+import uuid 
 from flask import *
 
+#Domain
+class StorageLogic:
+    def guardar(self, user_data):
+        pass
 
-class GameEvenHub:
-    _game_event = {}
+    def cargar(self):
+        pass
+    def actualizar(self):
+        pass
 
-    @classmethod
-    def sub_game_event(cls, type_event, callback):
-        if type_event not in cls._game_event:
-            cls._game_event[type_event] = []
-        cls._game_event[type_event].append(callback)
-    
-    @classmethod
-    def pub_game_event(cls, type_event, game_data_event):
-        if type_event in cls._game_event:
-            for game_event in cls._game_event[type_event]:
-                game_event(game_data_event)
+class SQLite(StorageLogic):
+    def guardar(self, user_data):
+        return super().guardar(user_data)
+    def cargar(self):
+        return super().cargar()
+    def actualizar(self):
+        return super().actualizar()
 
-
-class GameEvents:
-    def __init__(self, killstatus):
-        self.killstatus = killstatus
-
-
-    def killEnemy(self):
-        if self.killstatus:
-            print("Has matado a un jugador!")
-
-            GameEvenHub.pub_game_event("ENEMIGO_ELIMINADO", {
-                "kill_status":self.killstatus,
-                
-            })
-            
-            GameEvenHub.pub_game_event("MONEDA_RECODIGA", {
-                "kill_status":self.killstatus,
-                
-            })
-
-
-class AchievementTracker:
-    _total_kills = 0
-    _coins = 0
-    @classmethod
-    def achievement(cls, game_data_event):
-        if game_data_event["kill_status"]:
-            cls._total_kills +=1
-            cls._coins += 2
-            print(f"Kills:{cls._total_kills} | Coins:{cls._coins}")
-
-            if cls._total_kills == 3:
-                print(f"Felicidades! Has desbloqueado el logro 'Cazador'")
-            if cls._coins == 100:
-                print(f"Felicidades! Has desbloqueado el logro 'Rico'")
+class StorageService:
+    def __init__(self, storage:StorageLogic):
+        self.storage =storage
+    def save_data(self, user_data):
+        return self.storage.guardar(user_data)
+    def load_data(self):
+        return self.storage.cargar()
+    def update_data(self):
+        return self.storage.actualizar()
 
 
 
 
 
 
+
+
+
+
+#Flask Logic
 app= Flask(__name__)
+app.secret_key = str(uuid.uuid4())
+
 @app.route('/')
 def home():
     return render_template("menu.html")
 
+@app.route('/login', methods=["GET", "POST"])
+def login():
+    return render_template("login.html")
 
+@app.route('/register', methods=["GET", "POST"])
+def register():
+    name = request.form.get('user')
+    mail = request.form.get('mail')
+    password = request.form.get('pass')
+    action = request.form.get('action')
+    if request.method == "POST":
+        if action == "registerInto":
+            pass
+
+
+    return render_template("register.html")
+
+
+@app.route('/savepoints', methods=["POST"])
+def save_score():
+    data = request.json
+    session['kills'] = data.get('killedZombies')
+    session['coins'] = data.get('coins')
+
+    return jsonify({"status":"sucees"})
 @app.route('/points')
 def points():
 
-    kills = request.args.get("killedZombies")
-    coins = request.args.get("coins")
+    kills = session.get('kills')
+    coins = session.get('coins')
+
 
 
     return render_template("points.html", kills = kills, coins = coins)
-if __name__ == "__main__":
-    
-    GameEvenHub.sub_game_event("ENEMIGO_ELIMINADO", AchievementTracker.achievement)
-    GameEvenHub.sub_game_event("MONEDA_RECOGIDA", AchievementTracker.achievement)
 
-    m1 = GameEvents(True)
-    m1.killEnemy()
+
+
+@app.route('/game')
+def game():
+    return render_template("index.html")
+
+
+if __name__ == "__main__":
+   
 
     app.run(debug=True)
